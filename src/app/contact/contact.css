@@ -1,0 +1,14 @@
+.imageIconContact{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+}
+img{
+    width: 200px;
+    max-height: auto;
+}
+.text-2xl{
+   text-align: center;
+}
