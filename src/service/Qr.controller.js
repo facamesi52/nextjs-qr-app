@@ -36,7 +36,7 @@ export const createUserQr = async (userData) => {
 
   export const createMessage = async (userId, messageData) => {
     try {
-      const response = await axiosInstance.post(`/api/message/:userId=${userId}`, messageData);
+      const response = await axiosInstance.post(`/api/message/${userId}`, messageData);
       return response.data;
     } catch (error) {
       return error;

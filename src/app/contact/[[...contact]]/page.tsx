@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import { useState } from 'react'
-import { createMessage } from '../../service/Qr.controller'
+import { useState, useEffect } from 'react'
+import { createMessage } from '../../../service/Qr.controller'
 import './contact.css'
 type FormData = {
   nameMessage: string;
@@ -13,9 +13,14 @@ const Contact: React.FC = () => {
     message:'',
   })
   const { nameMessage, message } = formData;
-  const queryParams = new URLSearchParams(location.search);
-  const id = queryParams.get('userId');
-  console.log('este es el id que encuentro en la url', id)
+  const [userId, setUserId] = useState<string | null>(null);
+  useEffect(() => {
+    const urlSegments = window.location.pathname.split('/');
+    if (urlSegments.length === 3 && urlSegments[2]) {
+      setUserId(urlSegments[2]);
+    }
+  }, []);
+  console.log('este es el id que encuentro en la url', userId)
   const handleInputChange = (event:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setFormData({...formData, [name]: value});
@@ -26,9 +31,9 @@ const Contact: React.FC = () => {
       ...formData,
     }
     try {
-      if (id) {
+      if (userId) {
         // Pasa el userId a la función createMessage
-        let response = await createMessage(id, newMessage);
+        let response = await createMessage(userId, newMessage);
         setFormData({
           nameMessage: '',
           message: '',

@@ -20,47 +20,42 @@ const DashboardPage = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    const checkAndCreateUser = async () => {
-      // Verificar si el usuario ya existe
-      const existingUser = await getUserById(id);
+    const fetchUserDataAndMessages = async () => {
+      // No es necesario verificar si el usuario existe o no, simplemente crea el usuario
+      const userData = {
+        id,
+        email: userEmail,
+        userName,
+      };
 
-      if (!existingUser) {
-        // Si el usuario no existe, crearlo
-        const userData = {
-          id,
-          email: userEmail,
-          userName,
-        };
+      try {
+        // Enviar la solicitud para crear el usuario (sin verificar si existe)
+        const result = await createUserQr(userData);
 
-        try {
-          // Enviar la solicitud para crear el usuario
-          const result = await createUserQr(userData);
-
-          if (result.success) {
-            console.log('Usuario creado con éxito:', result.data);
-            // Aquí puedes realizar cualquier acción adicional, como mostrar un mensaje de éxito
-          } else {
-            console.error('Error al crear el usuario:', result.error_message);
-            // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
-          }
-        } catch (error) {
-          console.error('Error al crear el usuario:', error);
-          // Manejar errores de red u otros errores inesperados
+        if (result.success) {
+          console.log('Usuario creado con éxito:', result.data);
+          // Aquí puedes realizar cualquier acción adicional, como mostrar un mensaje de éxito
+        } else {
+          console.error('Error al crear el usuario:', result.error_message);
+          // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
         }
-      } else {
-        console.log('El usuario ya existe:', existingUser.data?.data?.messages);
+      } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        // Manejar errores de red u otros errores inesperados
+      }
 
-        // Asegurarse de que existingUser.data?.data?.messages sea un arreglo
-        if (Array.isArray(existingUser.data?.data?.messages)) {
-          // Aquí puedes guardar los mensajes en el estado
-          setMessages(existingUser.data.data.messages);
-        }
-        // Aquí puedes realizar cualquier acción adicional si el usuario ya existe
+      // Obtener los mensajes del usuario por su id
+      const userMessages = await getUserById(id);
+
+      // Asegurarse de que userMessages.data?.data?.messages sea un arreglo
+      if (Array.isArray(userMessages.data?.data?.messages)) {
+        // Aquí puedes guardar los mensajes en el estado
+        setMessages(userMessages.data.data.messages);
       }
     };
 
-    // Llamar a la función de verificación y creación de usuario cuando se monte el componente
-    checkAndCreateUser();
+    // Llamar a la función para obtener mensajes cuando se monte el componente
+    fetchUserDataAndMessages();
   }, [id, userName, userEmail]);
 
   return (
@@ -72,7 +67,7 @@ const DashboardPage = () => {
       <br />
       <h2>Emergency QR</h2>
       <QRCode
-        value={`/contact/${id}`}
+        value={`${window.location.origin}/contact/${id}`}
         size={400}
         scale={10}
       />
