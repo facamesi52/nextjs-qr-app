@@ -67,7 +67,7 @@ const DashboardPage = () => {
       <br />
       <h2>Emergency QR</h2>
       <QRCode
-        value={`${window.location.origin}/contact/${id}`}
+        value={`${process.env.NEXT_PUBLIC_BASE_URL}/contact/${id}`}
         size={400}
         scale={10}
       />
