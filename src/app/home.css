@@ -1,10 +1,17 @@
 .contenedorHome{
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
     margin: 15px;
     
+}
+
+
+.imagesHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 .imageExample{
     max-width: 700px;
@@ -34,4 +41,54 @@ h3{
 p,ol{
     font-size: medium;
     font-weight: 300;
+}
+
+@media (max-width: 1000px) {
+    .contenedorHome{
+        flex-direction: column;
+        margin: 15px;
+        align-items: center;
+        
+  }
+  .imagesHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+.textHome{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.textHomePage{
+    text-wrap: balance;
+}
+}
+
+  @media (min-width: 1000px) {
+    .contenedorHome{
+        flex-direction:row;       
+  }
+  .imagesHome {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+.textHome{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 }

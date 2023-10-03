@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
   return (
     <div>
       <div className='imageIconContact'>
-      <img className='iconoImage'src="https://res.cloudinary.com/drnclewqh/image/upload/v1695414968/hotelImages/uaomixpdynmpysmjvnqf.png" alt="icono"/>
+      <img className='iconoImage'src="https://res.cloudinary.com/drnclewqh/image/upload/v1696197049/hotelImages/jjeqkzedgtvikm68htps.png" alt="icono"/>
       </div>
       <form onSubmit={handleSubmit}>
       <div className="mx-auto max-w-2xl p-4">

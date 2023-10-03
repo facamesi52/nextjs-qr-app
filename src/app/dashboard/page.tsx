@@ -8,6 +8,7 @@ import { createUserQr, getUserById } from '../../service/Qr.controller';
 type Message = {
   messageText: string;
   emailMessage: string;
+  updatedAt: string;
 };
 
 const DashboardPage = () => {
@@ -73,29 +74,27 @@ const DashboardPage = () => {
       />
       <h4>You can print this QR so people can contact you. This QR is unique</h4>
       <br />
-  
-      {/* Aplica estilos específicos para la tabla */}
-      <div className="messages">
-        {messages.length > 0 ? (
-          <table className="tabla-mensajes">
-            <thead>
-              <tr>
-                <th>Message</th>
-                <th>Sent by</th>
-              </tr>
-            </thead>
-            <tbody>
-              {messages.map((message, index) => (
-                <tr key={index}>
-                  <td>{message.messageText}</td>
-                  <td>{message.emailMessage}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>No hay mensajes.</p>
-        )}
+          {/* Aplica estilos específicos para la tabla */}
+      <div className='boxMessages'>
+          {messages.length > 0 ? (
+            messages.map((message, index) => (
+            <div key={index} className="boxMessagesContenedor">
+        <div className='profile'>
+          <div className='profileImg'>
+            <img src="https://res.cloudinary.com/drnclewqh/image/upload/v1696200872/hotelImages/iu2rcmrfwmgjn2gag6vx.png" alt="userImg" />
+          </div>
+          <div className='profileInfo'>
+            <div className='profileInfoName'><b>{message?.emailMessage}</b></div>
+            <div className='profileInfoMensagge'>{message?.messageText}</div>
+          </div>
+        </div>
+        <div className='dateAndHour'>
+          <div className='date'>{message?.updatedAt.slice(0, 10)}</div>
+          <div className='hour'>{message?.updatedAt.slice(11, 13) + ":" + message?.updatedAt.slice(14, 16)}</div>
+        </div>
+        </div>
+        ))
+      ) : ( <p> no hay mensajes </p>)}
       </div>
     </div>
   )

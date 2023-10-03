@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 15px;
+    margin: 13px;
     padding: 0 0 0 5px;
     
     border-radius: 18px;
@@ -42,25 +42,48 @@ p,ol{
     font-size: medium;
     font-weight: 300;
 }
-.tabla-mensajes {
+
+  .boxMessages{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px; /* Espacio superior */
+    border-radius: 18px;
+    margin: 5px;
+    padding: 5px;
   }
-  
-  .tabla-mensajes th,
-  .tabla-mensajes td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+  .boxMessagesContenedor{
+    display: flex;
+    padding: 14px 7px 14px 7px;
+    margin: 3px;
+    border-radius: 18px;
+    background-color: rgb(240, 242, 242);
   }
-  
-  .tabla-mensajes th {
-    background-color: #3B82F6; /* Color de fondo para encabezados */
-    color: white;
-    font-weight: 600;
+  .profile{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:left ;
   }
-  
-  .tabla-mensajes tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* Fondo alternativo para filas pares */
+  .profileImg{
+    max-width: 30px;
+  }
+  .profileInfo{
+    margin-left: 6px;
+  }
+  .dateAndHour{
+    font-size: 12px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0 5px 1px;
+  }
+  .profileInfoMensagge{
+    padding: 3px 0 3px 0;
+    font-size: 12px;
+    text-wrap: balance;
+  }
+  .date .hour {
+    font-size: 12px;
+    padding: 5px 0 5px 0;
   }
